@@ -1,11 +1,6 @@
-
-# distributed algorithms, n.dulay, 9 jan 18
-# simple client-server, v1
-
 defmodule Client do
 
-def start do
-  IO.puts ["      Client at ", DNS.my_ip_addr()]
+def start_client do
   receive do
   { :bind, server } -> next(server)
   end
@@ -16,19 +11,19 @@ defp next(server) do
   random = :rand.uniform(2)
 
   if random == 1 do
-
-    send server, { :circle, 1.0, :pid, inspect self() }
-
+    IO.puts "Client #{inspect(self())} sending circle to the server..."
+    send server, { :circle, 1.0, :pid, self() }
   else  
-
-    send server, { :square, 1.0, :pid, inspect self() }
-
+    IO.puts "Client #{inspect(self())} sending square to the server..."
+    send server, { :square, 1.0, :pid, self() }
   end
 
-    receive do
+  IO.puts "Client #{inspect(self())} waiting..."  
+
+  receive do
     { :result, area, :type, shape } -> 
       IO.puts "Area of the #{shape} is #{area}" 
-    end
+  end
 
   random = :rand.uniform(2)
 
@@ -38,5 +33,4 @@ defp next(server) do
   next(server)
 end
 
-end # module -----------------------
-
+end
