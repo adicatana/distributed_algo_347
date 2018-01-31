@@ -19,6 +19,15 @@ defmodule Server do
     { :square, side, :pid, id } -> 
       IO.puts ["Received from ", inspect(id)]  
       send id, { :result, side * side, :type, "square" }
+
+    { :triangle, :a, l1, :b, l2, :c, l3, :pid, id } ->
+      IO.puts ["Received from ", inspect(id)]  
+      sp = (l1 + l2 + l3) / 2
+      
+      area = :math.sqrt((sp - l1) * (sp - l2) * (sp - l3) * sp)
+
+      send id, { :result, area, :type, "triangle" }      
+
     end
     
     next()
