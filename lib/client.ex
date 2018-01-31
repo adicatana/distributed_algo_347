@@ -12,12 +12,29 @@ def start do
 end
 
 defp next(server) do
-  send server, { :circle, 1.0 }
-  receive do
-  { :result, area } -> 
-    IO.puts "Area is #{area}" 
+  
+  random = :rand.uniform(2)
+
+  if random == 1 do
+
+    send server, { :circle, 1.0, :pid, inspect self() }
+
+  else  
+
+    send server, { :square, 1.0, :pid, inspect self() }
+
   end
-  Process.sleep(5000)
+
+    receive do
+    { :result, area, :type, shape } -> 
+      IO.puts "Area of the #{shape} is #{area}" 
+    end
+
+  random = :rand.uniform(2)
+
+  time = 2 * (random - 1) + 1
+
+  Process.sleep(time * 1000)
   next(server)
 end
 

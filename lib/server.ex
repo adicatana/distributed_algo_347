@@ -13,10 +13,14 @@ end # start
  
 def next(client) do
   receive do
-  { :circle, radius } -> 
-    send client, { :result, 3.14159 * radius * radius }
-  { :square, side } -> 
-    send client, { :result, side * side }
+  { :circle, radius, :pid, id } -> 
+    send client, { :result, 3.14159 * radius * radius, :type, "circle" }
+    IO.puts "Process id of the client #{id}"
+
+  { :square, side, :pid, id } -> 
+    send client, { :result, side * side, :type, "square" }
+    IO.puts "Process id of the client #{id}"
+
   end
   next(client)
 end # next
