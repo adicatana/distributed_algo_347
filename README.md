@@ -1,6 +1,5 @@
 # ClientServer
 
-**TODO: Add description**
 
 ## Installation
 
@@ -19,3 +18,4 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/client_server](https://hexdocs.pm/client_server).
 
+Labs for DA347
