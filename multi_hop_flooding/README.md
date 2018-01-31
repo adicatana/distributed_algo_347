@@ -3,7 +3,7 @@
 Flooding is a simple algorithm to send (broadcast) a message to all nodes on a multi-hop network, like a sensor network. More usefully, it can be used to build a rooted spanning tree.
 This is the implementation for a multi-hop network.	
 
-![Alt text](/network.png?raw=true "The network topology")
+![Alt text](network.png?raw=true "The network topology")
 
 ## Installation
 
